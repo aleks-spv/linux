@@ -75,10 +75,16 @@
 	};
 
 	sound {
-		compatible = "qcom,sm8250-sndcard";
+		compatible = "xiaomi,sweet-sndcard";
 		pinctrl-0 = <&pri_mi2s_active &pri_mi2s_ws_active>;
 		pinctrl-names = "default";
 		model = "Redmi Note 10 Pro";
+		widgets = "Speaker", "Speaker Spk",
+			  "Speaker", "Microphone Spk";
+		audio-routing = "Speaker Spk", "Speaker DAC Output",
+				"Microphone Spk", "Microphone DAC Output",
+				"Speaker AIF_RX", "PRI_MI2S_RX",
+				"Microphone AIF_RX", "PRI_MI2S_RX";
 
 		mm1-dai-link {
 			link-name = "MultiMedia1";
@@ -98,7 +104,7 @@
 			};
 
 			codec {
-				sound-dai = <&speaker_amp>;
+				sound-dai = <&speaker_amp>, <&mic_amp>;
 			};
 		};
 	};
@@ -155,7 +161,6 @@
 		pinctrl-0 = <&amp_t_int_default>;
 
 		awinic,audio-channel = <0>;
-		awinic,sync-flag;
 
 		sound-name-prefix = "Speaker";
 		#sound-dai-cells = <0>;
@@ -173,7 +178,6 @@
 		pinctrl-0 = <&amp_b_int_default>;
 
 		awinic,audio-channel = <1>;
-		awinic,sync-flag;
 
 		sound-name-prefix = "Microphone";
 		#sound-dai-cells = <0>;
