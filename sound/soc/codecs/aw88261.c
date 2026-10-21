@@ -1057,7 +1057,7 @@ static int aw88261_playback_event(struct snd_soc_dapm_widget *w,
 
 static const struct snd_soc_dapm_widget aw88261_dapm_widgets[] = {
 	 /* playback */
-	SND_SOC_DAPM_AIF_IN_E("AIF_RX", "Speaker_Playback", 0, 0, 0, 0,
+	SND_SOC_DAPM_AIF_IN_E("AIF_RX", "Speaker_Playback", 0, SND_SOC_NOPM, 0, 0,
 					aw88261_playback_event,
 					SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
 	SND_SOC_DAPM_OUTPUT("DAC Output"),
