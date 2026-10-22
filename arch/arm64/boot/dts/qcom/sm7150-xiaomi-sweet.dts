@@ -252,6 +252,10 @@
 	vsp-supply = <&vreg_lab>;
 };
 
+&pm6150_qgauge {
+	power-supplies = <&pm6150_charger>;
+};
+
 &pm6150_typec {
 	connector {
 		op-sink-microwatt = <15000000>;
