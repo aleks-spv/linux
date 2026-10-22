@@ -410,6 +410,14 @@ static int smb_get_prop_status(struct smb_chip *chip, int *val)
 
 	stat = stat & BATTERY_CHARGER_STATUS_MASK;
 
+	/* SMB5 reports inhibit as 0 and pause as 6, the other states match */
+	if (chip->gen == SMB5) {
+		if (stat == 0)
+			stat = INHIBIT_CHARGE;
+		else if (stat == 6)
+			stat = DISABLE_CHARGE;
+	}
+
 	switch (stat) {
 	case TRICKLE_CHARGE:
 	case PRE_CHARGE:
